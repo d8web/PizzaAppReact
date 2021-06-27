@@ -46,27 +46,40 @@ class FormArea extends React.Component {
             borda: 1,
             pizzaSelected: 0,
             pizzas: PizzasArray,
+            cart: [{}],
             modal: false,
             modalIngredients: false
         };
 
         this.handleChangeSabor = this.handleChangeSabor.bind(this)
+
         this.handleChangeBorda = this.handleChangeBorda.bind(this)
+
         this.handleChangeModal = this.handleChangeModal.bind(this)
+
         this.handleCloseModal = this.handleCloseModal.bind(this)
+
         this.handleOpenModalIngredients = this.handleOpenModalIngredients.bind(this)
+
         this.handleCloseIngredientsModal = this.handleCloseIngredientsModal.bind(this)
+
+        this.handleSaborUmClick = this.handleSaborUmClick.bind(this)
+
+        this.handleSaborDoisClick = this.handleSaborDoisClick.bind(this)
+
+        this.handleCartAdd = this.handleCartAdd.bind(this)
     }
   
     handleChangeSabor(e) {
-        this.setState({ sabor: e.target.value });
+        this.setState({ sabor: parseInt(e.target.value) });
     }
 
     handleChangeBorda(e) {
-        this.setState({ borda: e.target.value })
+        this.setState({ borda: parseInt(e.target.value) })
     }
 
     handleChangeModal(e) {
+        //console.log(e.target)
         this.setState({ modal: true })
     }
 
@@ -83,31 +96,22 @@ class FormArea extends React.Component {
         this.setState({ modalIngredients: false })
         //console.log(this.state.modalIngredients)
     }
+
+    handleSaborUmClick(e) {
+        alert('add pizza 1')
+    }
+
+    handleSaborDoisClick(e) {
+        alert('add pizza 2')
+    }
+
+    handleCartAdd(e) {
+        alert('add cart')
+    }
   
     render() {
         return (
             <>
-                {this.state.modal &&
-                    <ModalPizza
-                        data={this.state.pizzas}
-                        pizzaSelected={this.state.pizzaSelected}
-                        onClick={this.handleCloseModal}
-                    />
-                }
-                {this.state.modalIngredients &&
-                    <MyModalIngredients
-                        onClick={this.handleCloseIngredientsModal}
-                        data={this.state.pizzas[this.state.pizzaSelected]}
-                    />
-                }
-                <FormAreaItem>
-                    <div className="select-container fs-m">
-                        Escolha quantos sabores
-                    </div>
-                    <div className="select-container fs-m">
-                        Escolha uma borda
-                    </div>
-                </FormAreaItem>
                 <FormAreaItem>
                     <div className="select-container">
                         <div className="flex-container">
@@ -142,16 +146,16 @@ class FormArea extends React.Component {
 
                 <PizzaItemArea>
                     <div className="img-area-pizza" img="assets/media/tabua.png">
-                        {this.state.sabor == 1 &&
+                        {this.state.sabor === 1 &&
                             <img
                                 src={this.state.pizzas[this.state.pizzaSelected].img}
                                 onClick={this.handleChangeModal}
                             />
                         }
-                        {this.state.sabor == 2 &&
+                        {this.state.sabor === 2 &&
                             <div className="two-pizzas">
-                                <div>Escolha o Sabor 1</div>
-                                <div>Escolha o Sabor 2</div>
+                                <div onClick={this.handleSaborUmClick}>Escolha o Sabor 1</div>
+                                <div onClick={this.handleSaborDoisClick}>Escolha o Sabor 2</div>
                             </div>
                         }
                     </div>
@@ -162,9 +166,28 @@ class FormArea extends React.Component {
                                 <p>{ingredient.label}</p>
                             </div>
                         ))}
-                        <button className="button-action">Adicionar ao Carrinho</button>
+                        <button
+                            className="button-action"
+                            onClick={this.handleCartAdd}
+                        >
+                            Adicionar ao Carrinho
+                        </button>
                     </div>
                 </PizzaItemArea>
+                
+                {this.state.modal &&
+                    <ModalPizza
+                        data={this.state.pizzas}
+                        pizzaSelected={this.state.pizzaSelected}
+                        onClick={this.handleCloseModal}
+                    />
+                }
+                {this.state.modalIngredients &&
+                    <MyModalIngredients
+                        onClick={this.handleCloseIngredientsModal}
+                        data={this.state.pizzas[this.state.pizzaSelected]}
+                    />
+                }
 
             </>
         );

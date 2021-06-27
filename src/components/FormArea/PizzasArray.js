@@ -8,7 +8,7 @@ const PizzasArray = [
             {idIngrediente: 1, label:'Molho de tomate'},
             {idIngrediente: 2, label:'Queijo Mussarela'},
             {idIngrediente: 3, label:'Rodelas de Tomate'},
-            {idIngrediente: 4, label:'Palmito'},
+            {idIngrediente: 4, label:'Palmito fresco'},
             {idIngrediente: 5, label:'Queijo Parmesão'},
             {idIngrediente: 6, label:'Azeitona'},
             {idIngrediente: 7, label:'Orégano'},

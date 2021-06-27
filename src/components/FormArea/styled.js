@@ -5,6 +5,11 @@ export const FormAreaItem = styled.div`
     max-width: 1200px;
     margin: auto;
     display: flex;
+    align-items: center;
+
+    @media screen and (max-width: 1050px) {
+        flex-direction: column;
+    }
 
     .fs-m {
         font-size: 20px;
@@ -17,12 +22,20 @@ export const FormAreaItem = styled.div`
         display: flex;
         align-items: center;
 
+        @media screen and (max-width: 1050px) {
+            flex-direction: column;
+        }
+
         .flex-container {
             width: 100%;
             display: flex;
             align-items: center;
             margin: 10px;
             border-radius: 60px;
+
+            @media screen and (max-width: 1050px) {
+                flex-direction: column;
+            }
 
             select {
                 font-size: 20px;
@@ -47,6 +60,7 @@ export const FormAreaItem = styled.div`
 export const MyForm = styled.form`
     width: 100%;
     display: flex;
+    align-items: center;
 `
 
 export const FormLabel = styled.div`
@@ -69,6 +83,10 @@ export const PizzaItemArea = styled.div`
     display: flex;
     align-items: center;
     margin-top: 60px;
+
+    @media screen and (max-width: 1100px) {
+        flex-direction: column;
+    }
 
     .img-area-pizza, .info-area-pizza {
         flex: 1;
@@ -109,6 +127,10 @@ export const PizzaItemArea = styled.div`
         justify-content: center;
         align-items: center;
 
+        @media screen and (max-width: 1100px) {
+            margin-bottom: 50px;
+        }
+
         img {
             width: 380px;
             margin-top: -4px;
@@ -117,19 +139,50 @@ export const PizzaItemArea = styled.div`
             cursor: pointer;
         }
         .two-pizzas {
-            width: 100%;
-            padding: 100px;
-            color: #fff;
+            width: 63%;
+            height: 76%;
+            color: #333;
             display: flex;
             justify-content: space-between;
-            font-size: 24px;
+            align-items: center;
+            font-size: 22px;
+            background-color: #ffcf00;
+            margin-right: 3px;
+            margin-top: -10px;
+            border-radius: 300px;
+
+            @media screen and (max-width: 1100px) {
+                width: 400px;
+                height: 400px;
+            }
+
+            @media screen and (max-width: 500px) {
+                width: 280px;
+                height: 280px;
+                font-size: 18px;
+            }
 
             div {
                 flex: 1;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                border: 4px solid #999;
+                cursor: pointer;
+                height: 100%;
+                color: #fff;
+
+                &:first-child {
+                    border-top-left-radius: 200px;
+                    border-bottom-left-radius: 200px;
+                    background-color: red;
+                }
+
+                &:last-child {
+                    border-left: 1px solid white;
+                    background-color: blue;
+                    border-bottom-right-radius: 200px;
+                    border-top-right-radius: 200px;
+                }
             }
         }
     }
