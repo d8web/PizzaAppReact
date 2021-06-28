@@ -146,7 +146,6 @@ export const PizzaItemArea = styled.div`
             justify-content: space-between;
             align-items: center;
             font-size: 22px;
-            background-color: #ffcf00;
             margin-right: 3px;
             margin-top: -10px;
             border-radius: 300px;
@@ -174,14 +173,17 @@ export const PizzaItemArea = styled.div`
                 &:first-child {
                     border-top-left-radius: 200px;
                     border-bottom-left-radius: 200px;
-                    background-color: red;
                 }
 
                 &:last-child {
-                    border-left: 1px solid white;
-                    background-color: blue;
                     border-bottom-right-radius: 200px;
                     border-top-right-radius: 200px;
+                }
+
+                img {
+                    margin-top: 3px;
+                    margin-left: 3px;
+                    width: 100%;
                 }
             }
         }

@@ -46,7 +46,7 @@ class FormArea extends React.Component {
             borda: 1,
             pizzaSelected: 0,
             pizzas: PizzasArray,
-            cart: [{}],
+            cart: [],
             modal: false,
             modalIngredients: false
         };
@@ -106,7 +106,24 @@ class FormArea extends React.Component {
     }
 
     handleCartAdd(e) {
-        alert('add cart')
+        //alert('add cart')
+        //console.log(this.state.pizzas[this.state.pizzaSelected])
+
+        let id = this.state.pizzas[this.state.pizzaSelected].id
+        let index = this.state.cart.findIndex(item => item.id === id)
+        if(index > -1) {
+            this.state.cart[index].qt++
+        } else {
+            this.state.cart.push({
+                id,
+                name: this.state.pizzas[this.state.pizzaSelected].name,
+                image: this.state.pizzas[this.state.pizzaSelected].img,
+                qt: 1,
+                price: this.state.pizzas[this.state.pizzaSelected].preço
+            })
+        }
+
+        console.log(this.state.cart)
     }
   
     render() {
@@ -154,8 +171,12 @@ class FormArea extends React.Component {
                         }
                         {this.state.sabor === 2 &&
                             <div className="two-pizzas">
-                                <div onClick={this.handleSaborUmClick}>Escolha o Sabor 1</div>
-                                <div onClick={this.handleSaborDoisClick}>Escolha o Sabor 2</div>
+                                <div onClick={this.handleSaborUmClick}>
+                                    <img src="assets/media/pizzameia.png" /> {/** Inserir fotos dinamicas aqui e na imagem abaixo */}
+                                </div>
+                                <div onClick={this.handleSaborDoisClick}>
+                                    <img src="assets/media/pizza3meia.png" />
+                                </div>
                             </div>
                         }
                     </div>
@@ -188,7 +209,6 @@ class FormArea extends React.Component {
                         data={this.state.pizzas[this.state.pizzaSelected]}
                     />
                 }
-
             </>
         );
     }
