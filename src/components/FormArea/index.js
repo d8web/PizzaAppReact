@@ -11,6 +11,7 @@ import ModalPizza from "../ModalPizza";
 import MyModalIngredients from "../ModalIngredients"
 
 import PizzasArray from './PizzasArray'
+
 const sabores = [
   {
     label: "1 Sabor",
@@ -49,6 +50,22 @@ class FormArea extends React.Component {
             borda: 1,
             pizzaSelected: 0,
             pizzas: PizzasArray,
+            pizzaDoisSabores: [
+                {
+                    idPizza: 1,
+                    id: 1,
+                    name: 'Pizza Test',
+                    price: 34,
+                    img: 'assets/media/pizzameia.png'
+                },
+                {
+                    idPizza: 2,
+                    id: 2,
+                    name: 'Pizza Calabresa',
+                    price: 34,
+                    img: 'assets/media/pizzameia.png'
+                }
+            ],
             cart: [],
             cartOpen: false,
             modal: false,
@@ -77,7 +94,7 @@ class FormArea extends React.Component {
     }
   
     handleChangeSabor(e) {
-        this.setState({ sabor: parseInt(e.target.value) });
+        this.setState({ sabor: parseInt(e.target.value) })
     }
 
     handleChangeBorda(e) {
@@ -90,8 +107,8 @@ class FormArea extends React.Component {
     }
 
     handleCloseModal(k) {
-        this.setState({ modal: false })
         this.setState({ pizzaSelected: k })
+        this.setState({ modal: false })
     }
 
     handleOpenModalIngredients(e) {
@@ -105,9 +122,19 @@ class FormArea extends React.Component {
 
     handleSaborUmClick(e) {
         alert('add pizza 1')
+        this.state.pizzaDoisSabores.push({
+            id: this.state.pizzas[this.state.pizzaSelected].id,
+            name: this.state.pizzas[this.state.pizzaSelected].name,
+            image: this.state.pizzas[this.state.pizzaSelected].rigthImg,
+            borda: this.state.borda,
+            qt: 1,
+            price: this.state.pizzas[this.state.pizzaSelected].preço,
+        })
+        console.log(this.state.pizzaDoisSabores)
     }
 
     handleSaborDoisClick(e) {
+        this.handleChangeModal()
         alert('add pizza 2')
     }
 
@@ -124,13 +151,14 @@ class FormArea extends React.Component {
                 id,
                 name: this.state.pizzas[this.state.pizzaSelected].name,
                 image: this.state.pizzas[this.state.pizzaSelected].img,
+                borda: this.state.borda,
                 qt: 1,
-                price: this.state.pizzas[this.state.pizzaSelected].preço
+                price: this.state.pizzas[this.state.pizzaSelected].preço,
             })
         }
 
         this.setState({ cart: this.state.cart })
-        console.log(this.state.cart)
+        //console.log(this.state.cart)
     }
 
     handleCartOpen(e) {
@@ -199,6 +227,9 @@ class FormArea extends React.Component {
                                 <p>{ingredient.label}</p>
                             </div>
                         ))}
+                        <div style={{ width: "100%", fontSize: 22, marginTop: 20, marginBottom: 10, fontWeight: 600 }}>
+                            R$ {this.state.pizzas[this.state.pizzaSelected].preço.toFixed(2)}
+                        </div>
                         <button
                             className="button-action"
                             onClick={this.handleCartAdd}
@@ -215,6 +246,7 @@ class FormArea extends React.Component {
                         onClick={this.handleCloseModal}
                     />
                 }
+
                 {this.state.modalIngredients &&
                     <MyModalIngredients
                         onClick={this.handleCloseIngredientsModal}
@@ -230,13 +262,15 @@ class FormArea extends React.Component {
 
                         {this.state.cartOpen &&
                             <CartBody>
+
                                 {this.state.cart.map((item, k)=>(
                                     <ul key={k} style={{display: "flex", listStyle: "none"}}>
-                                        <li style={{margin: 10}}>{item.qt}</li>
-                                        <li style={{margin: 10}}>{item.name}</li>
-                                        <li style={{margin: 10}}>{item.price}</li>
+                                        <li style={{margin: 10, fontSize: 22}}>{item.qt}</li>
+                                        <li style={{margin: 10, fontSize: 22}}>{item.name}</li>
+                                        <li style={{margin: 10, fontSize: 22}}>R$ {item.price.toFixed(2)}</li>
                                     </ul>
                                 ))}
+
                             </CartBody>
                         }
                     </CartArea>

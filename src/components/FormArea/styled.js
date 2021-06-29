@@ -203,7 +203,6 @@ export const CartArea = styled.div`
     z-index: 999;
     width: 280px;
     transition: all 0.3s ease-in-out;
-    background-color: rebeccapurple;
     color: #fff;
 
     @media screen and (max-width: 500px) {
@@ -219,15 +218,20 @@ export const CartHeader = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 0px 22px;
     height: 50px;
-    background-color: red;
+    background-color: #db1818;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 500;
+    border-bottom: 2px solid #333;
 `
 
 export const CartBody = styled.div`
     width: 100%;
     height: 300px;
-    background-color: orange;
+    background-color: #db1818;
+    transition: display 0.3s ease-in-out;
 `

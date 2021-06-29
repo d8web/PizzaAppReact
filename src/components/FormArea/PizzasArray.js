@@ -13,7 +13,8 @@ const PizzasArray = [
             {idIngrediente: 6, label:'Azeitona'},
             {idIngrediente: 7, label:'Orégano'},
         ],
-        img: 'assets/media/pizza.png'
+        img: 'assets/media/pizza.png',
+        rigthImg: 'assets/media/pizzameia.png'
     },
     {
         id: 2,
