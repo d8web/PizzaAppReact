@@ -7,7 +7,7 @@ export const FormAreaItem = styled.div`
     display: flex;
     align-items: center;
 
-    @media screen and (max-width: 1050px) {
+    @media screen and (max-width: 900px) {
         flex-direction: column;
     }
 
@@ -21,8 +21,9 @@ export const FormAreaItem = styled.div`
         flex: 1;
         display: flex;
         align-items: center;
+        width: 100%;
 
-        @media screen and (max-width: 1050px) {
+        @media screen and (max-width: 600px) {
             flex-direction: column;
         }
 
@@ -33,16 +34,12 @@ export const FormAreaItem = styled.div`
             margin: 10px;
             border-radius: 60px;
 
-            @media screen and (max-width: 1050px) {
-                flex-direction: column;
-            }
-
             select {
                 font-size: 20px;
                 width: 100%;
                 outline: none;
-                margin: 5px 20px;
-                height: 60px;
+                margin: 5px;
+                height: 50px;
                 border: none;
                 padding: 10px;
                 cursor: pointer;
@@ -50,6 +47,8 @@ export const FormAreaItem = styled.div`
 
             img {
                 margin-left: 20px;
+                width: 50px;
+                height: auto;
             }
         }
 
@@ -129,6 +128,7 @@ export const PizzaItemArea = styled.div`
 
         @media screen and (max-width: 1100px) {
             margin-bottom: 50px;
+            padding: 10px;
         }
 
         img {
@@ -137,6 +137,12 @@ export const PizzaItemArea = styled.div`
             margin-left: -4px;
             height: auto;
             cursor: pointer;
+
+            @media screen and (max-width: 500px) {
+                width: 100%;
+                margin-top: 0px;
+                margin-left: 0px;
+            }
         }
         .two-pizzas {
             width: 63%;
@@ -188,4 +194,40 @@ export const PizzaItemArea = styled.div`
             }
         }
     }
+`
+
+export const CartArea = styled.div`
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    z-index: 999;
+    width: 280px;
+    transition: all 0.3s ease-in-out;
+    background-color: rebeccapurple;
+    color: #fff;
+
+    @media screen and (max-width: 500px) {
+        top: 0;
+        width: 100%;
+        height: 50vh;
+        left: 0;
+        z-index: 99;
+    }
+`
+
+export const CartHeader = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    height: 50px;
+    background-color: red;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+`
+
+export const CartBody = styled.div`
+    width: 100%;
+    height: 300px;
+    background-color: orange;
 `

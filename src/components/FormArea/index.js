@@ -1,7 +1,10 @@
 import React from "react";
 import {
     FormAreaItem,
-    PizzaItemArea
+    PizzaItemArea,
+    CartArea,
+    CartHeader,
+    CartBody
 } from './styled'
 
 import ModalPizza from "../ModalPizza";
@@ -47,6 +50,7 @@ class FormArea extends React.Component {
             pizzaSelected: 0,
             pizzas: PizzasArray,
             cart: [],
+            cartOpen: false,
             modal: false,
             modalIngredients: false
         };
@@ -68,6 +72,8 @@ class FormArea extends React.Component {
         this.handleSaborDoisClick = this.handleSaborDoisClick.bind(this)
 
         this.handleCartAdd = this.handleCartAdd.bind(this)
+
+        this.handleCartOpen = this.handleCartOpen.bind(this)
     }
   
     handleChangeSabor(e) {
@@ -123,7 +129,13 @@ class FormArea extends React.Component {
             })
         }
 
+        this.setState({ cart: this.state.cart })
         console.log(this.state.cart)
+    }
+
+    handleCartOpen(e) {
+        this.setState({ cartOpen: !this.state.cartOpen })
+        //alert('open')
     }
   
     render() {
@@ -132,7 +144,7 @@ class FormArea extends React.Component {
                 <FormAreaItem>
                     <div className="select-container">
                         <div className="flex-container">
-                            <img src="assets/media/icon-pizza.png" style={{width: 60, height: 60}} />
+                            <img src="assets/media/icon-pizza.png" />
                             <select value={this.state.sabor} onChange={this.handleChangeSabor}>
                                 {sabores.map((option,k) => (
                                     <option
@@ -146,7 +158,7 @@ class FormArea extends React.Component {
                         </div>
                         
                         <div className="flex-container">
-                            <img src="assets/media/icon-pizza.png" style={{width: 60, height: 60}} />
+                            <img src="assets/media/icon-pizza.png" />
                             <select value={this.state.borda} onChange={this.handleChangeBorda}>
                                 {bordas.map((option,k) => (
                                     <option
@@ -208,6 +220,26 @@ class FormArea extends React.Component {
                         onClick={this.handleCloseIngredientsModal}
                         data={this.state.pizzas[this.state.pizzaSelected]}
                     />
+                }
+
+                {this.state.cart.length > 0 &&
+                    <CartArea>
+                        <CartHeader onClick={this.handleCartOpen}>
+                            Carrinho {this.state.cart.length}
+                        </CartHeader>
+
+                        {this.state.cartOpen &&
+                            <CartBody>
+                                {this.state.cart.map((item, k)=>(
+                                    <ul key={k} style={{display: "flex", listStyle: "none"}}>
+                                        <li style={{margin: 10}}>{item.qt}</li>
+                                        <li style={{margin: 10}}>{item.name}</li>
+                                        <li style={{margin: 10}}>{item.price}</li>
+                                    </ul>
+                                ))}
+                            </CartBody>
+                        }
+                    </CartArea>
                 }
             </>
         );
