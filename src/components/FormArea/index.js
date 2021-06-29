@@ -50,26 +50,12 @@ class FormArea extends React.Component {
             borda: 1,
             pizzaSelected: 0,
             pizzas: PizzasArray,
-            pizzaDoisSabores: [
-                {
-                    idPizza: 1,
-                    id: 1,
-                    name: 'Pizza Test',
-                    price: 34,
-                    img: 'assets/media/pizzameia.png'
-                },
-                {
-                    idPizza: 2,
-                    id: 2,
-                    name: 'Pizza Calabresa',
-                    price: 34,
-                    img: 'assets/media/pizzameia.png'
-                }
-            ],
+            pizzaSaborUm: [],
+            pizzaSaborDois: [],
             cart: [],
             cartOpen: false,
             modal: false,
-            modalIngredients: false
+            modalIngredients: false,
         };
 
         this.handleChangeSabor = this.handleChangeSabor.bind(this)
@@ -121,8 +107,8 @@ class FormArea extends React.Component {
     }
 
     handleSaborUmClick(e) {
-        alert('add pizza 1')
-        this.state.pizzaDoisSabores.push({
+        //alert('Add pizza 1')
+        this.state.pizzaSaborUm.push({
             id: this.state.pizzas[this.state.pizzaSelected].id,
             name: this.state.pizzas[this.state.pizzaSelected].name,
             image: this.state.pizzas[this.state.pizzaSelected].rigthImg,
@@ -130,12 +116,20 @@ class FormArea extends React.Component {
             qt: 1,
             price: this.state.pizzas[this.state.pizzaSelected].preço,
         })
-        console.log(this.state.pizzaDoisSabores)
+        console.log("Pizza 1:", this.state.pizzaSaborUm)
     }
 
     handleSaborDoisClick(e) {
-        this.handleChangeModal()
-        alert('add pizza 2')
+        //alert('Add pizza 2')
+        this.state.pizzaSaborDois.push({
+            id: this.state.pizzas[this.state.pizzaSelected].id,
+            name: this.state.pizzas[this.state.pizzaSelected].name,
+            image: this.state.pizzas[this.state.pizzaSelected].rigthImg,
+            borda: this.state.borda,
+            qt: 1,
+            price: this.state.pizzas[this.state.pizzaSelected].preço,
+        })
+        console.log("Pizza 2:", this.state.pizzaSaborDois)
     }
 
     handleCartAdd(e) {
@@ -172,7 +166,7 @@ class FormArea extends React.Component {
                 <FormAreaItem>
                     <div className="select-container">
                         <div className="flex-container">
-                            <img src="assets/media/icon-pizza.png" />
+                            <img src="assets/media/icon-pizza.png" alt="icon-logo" />
                             <select value={this.state.sabor} onChange={this.handleChangeSabor}>
                                 {sabores.map((option,k) => (
                                     <option
@@ -186,7 +180,7 @@ class FormArea extends React.Component {
                         </div>
                         
                         <div className="flex-container">
-                            <img src="assets/media/icon-pizza.png" />
+                            <img src="assets/media/icon-pizza.png" alt="icon-logo" />
                             <select value={this.state.borda} onChange={this.handleChangeBorda}>
                                 {bordas.map((option,k) => (
                                     <option
@@ -207,15 +201,16 @@ class FormArea extends React.Component {
                             <img
                                 src={this.state.pizzas[this.state.pizzaSelected].img}
                                 onClick={this.handleChangeModal}
+                                alt="Pizza"
                             />
                         }
                         {this.state.sabor === 2 &&
                             <div className="two-pizzas">
                                 <div onClick={this.handleSaborUmClick}>
-                                    <img src="assets/media/pizzameia.png" /> {/** Inserir fotos dinamicas aqui e na imagem abaixo */}
+                                    <img src="assets/media/pizzameia.png" alt="Pizza-sabor-1" />
                                 </div>
                                 <div onClick={this.handleSaborDoisClick}>
-                                    <img src="assets/media/pizza3meia.png" />
+                                    <img src="assets/media/pizza3meia.png" alt="Pizza-sabor-2" />
                                 </div>
                             </div>
                         }

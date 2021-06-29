@@ -8,7 +8,7 @@ import {
 
 const ModalPizza = ({ data, selectedPizza, onClick }) => {
 
-    const [ info, setInfo ] = useState(data)
+    const info = data
     const [ pizzaSelected, setPizzaSelected ] = useState(selectedPizza)
 
     const handleClickPizza = (key) => {
@@ -19,6 +19,7 @@ const ModalPizza = ({ data, selectedPizza, onClick }) => {
     return (
         <ModalArea>
             <ModalContainer>
+            {pizzaSelected}
                 {info.map((element, key) => (
                     <ModalCard
                         key={key}
