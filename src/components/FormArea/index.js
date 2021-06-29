@@ -254,20 +254,17 @@ class FormArea extends React.Component {
                         <CartHeader onClick={this.handleCartOpen}>
                             Carrinho {this.state.cart.length}
                         </CartHeader>
+                        <CartBody open={this.state.cartOpen}>
 
-                        {this.state.cartOpen &&
-                            <CartBody>
+                            {this.state.cart.map((item, k)=>(
+                                <ul key={k} style={{display: "flex", listStyle: "none"}}>
+                                    <li style={{margin: 10, fontSize: 22}}>{item.qt}</li>
+                                    <li style={{margin: 10, fontSize: 22}}>{item.name}</li>
+                                    <li style={{margin: 10, fontSize: 22}}>R$ {item.price.toFixed(2)}</li>
+                                </ul>
+                            ))}
 
-                                {this.state.cart.map((item, k)=>(
-                                    <ul key={k} style={{display: "flex", listStyle: "none"}}>
-                                        <li style={{margin: 10, fontSize: 22}}>{item.qt}</li>
-                                        <li style={{margin: 10, fontSize: 22}}>{item.name}</li>
-                                        <li style={{margin: 10, fontSize: 22}}>R$ {item.price.toFixed(2)}</li>
-                                    </ul>
-                                ))}
-
-                            </CartBody>
-                        }
+                        </CartBody>
                     </CartArea>
                 }
             </>

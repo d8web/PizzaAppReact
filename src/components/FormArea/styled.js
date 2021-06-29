@@ -43,6 +43,10 @@ export const FormAreaItem = styled.div`
                 border: none;
                 padding: 10px;
                 cursor: pointer;
+
+                @media screen and (max-width: 1100px) {
+                    margin: 0 10px;
+                }                
             }
 
             img {
@@ -113,6 +117,9 @@ export const PizzaItemArea = styled.div`
             margin-bottom: 10px;
             font-size: 18px;
             font-weight: 400;
+        }
+        @media screen and (max-width: 1100px) {
+            text-align: center;
         }
     }
 
@@ -234,4 +241,5 @@ export const CartBody = styled.div`
     height: 300px;
     background-color: #db1818;
     transition: display 0.3s ease-in-out;
+    display: ${props => props.open === true ? 'none' : 'block'}
 `

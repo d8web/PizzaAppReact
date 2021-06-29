@@ -16,7 +16,7 @@ export const HeaderContainer = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    @media screen and (max-width: 1050px) {
+    @media screen and (max-width: 600px) {
         flex-direction: column;
     }
 `
@@ -26,13 +26,14 @@ export const LogoArea = styled.div`
 `
 
 export const LogoItem = styled.img`
-    width: 250px;
+    flex: 1;
+    max-width: 250px;
     height: auto;
     margin-top: 70px;
 
-    @media screen and (max-width: 1050px) {
+    @media screen and (max-width: 1000px) {
         margin-top: 0px;
-        width: 150px;
+        width: 160px;
     }
 `
 
@@ -41,8 +42,8 @@ export const BannerItem = styled.img`
     margin-top: 70px;
     height: auto;
 
-    @media screen and (max-width: 1050px) {
-        margin-top: 0px;
-        width: 150px;
+    @media screen and (max-width: 1000px) {
+        margin-top: 10px;
+        width: 180px;
     }
 `
