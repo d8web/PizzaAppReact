@@ -108,7 +108,7 @@ export const PizzaItemArea = styled.div`
             border-radius: 30px;
             font-weight: 500;
         }
-        h3 {
+        .title-pizza, h3 {
             font-size: 26px;
             font-weight: 500;
             margin-bottom: 20px;
@@ -208,7 +208,7 @@ export const CartArea = styled.div`
     bottom: 0;
     right: 20px;
     z-index: 999;
-    width: 280px;
+    width: 300px;
     transition: all 0.3s ease-in-out;
     color: #fff;
 

@@ -30,17 +30,9 @@ const bordas = [
         value: 1,
     },
     {
-        label: "Chocolate",
+        label: "Catupiry",
         value: 2,
     },
-    {
-        label: "Cheedar",
-        value: 3,
-    },
-    {
-        label: "Queijo",
-        value: 4,
-    }
 ]
 
 class FormArea extends React.Component {
@@ -130,17 +122,32 @@ class FormArea extends React.Component {
 
         let id = this.state.pizzas[this.state.pizzaSelected].id
         let index = this.state.cart.findIndex(item => item.id === id)
+
         if(index > -1) {
             this.state.cart[index].qt++
         } else {
-            this.state.cart.push({
-                id,
-                name: this.state.pizzas[this.state.pizzaSelected].name,
-                image: this.state.pizzas[this.state.pizzaSelected].img,
-                borda: this.state.borda,
-                qt: 1,
-                price: this.state.pizzas[this.state.pizzaSelected].preço,
-            })
+            if(this.state.sabor === 1 && this.state.borda === 1) {
+                this.state.cart.push({
+                    id,
+                    name: this.state.pizzas[this.state.pizzaSelected].name,
+                    image: this.state.pizzas[this.state.pizzaSelected].img,
+                    borda: `${this.state.borda === 1 ? 'Sem borda' : 'Catupiry'}`,
+                    qt: 1,
+                    qtSabores: "Pizza Inteira",
+                    price: this.state.pizzas[this.state.pizzaSelected].preço,
+                })
+            } else {
+                this.state.cart.push({
+                    id,
+                    name: `${this.state.pizzas[this.state.pizzaSelected].name}
+                    / ${this.state.pizzas[this.state.pizzaSaborDois].name}`,
+                    image: this.state.pizzas[this.state.pizzaSelected].img,
+                    borda: `${this.state.borda === 1 ? 'Sem borda' : 'Catupiry'}`,
+                    qt: 1,
+                    qtSabores: "Pizza Meia",
+                    price: this.state.pizzas[this.state.pizzaSelected].preço,
+                })
+            }
         }
 
         this.setState({ cart: this.state.cart })
@@ -207,23 +214,58 @@ class FormArea extends React.Component {
                             </div>
                         }
                     </div>
-                    <div className="info-area-pizza">
-                        <h3>Pizza de {this.state.pizzas[this.state.pizzaSelected].name}</h3>
-                        {this.state.pizzas[this.state.pizzaSelected].ingredientes.map((ingredient, k)=>(
-                            <div key={k} onClick={this.handleOpenModalIngredients}>
-                                <p>{ingredient.label}</p>
+
+                    {this.state.sabor === 1 &&
+                        <div className="info-area-pizza">
+                            <h3>Pizza de {this.state.pizzas[this.state.pizzaSelected].name}</h3>
+                            {this.state.pizzas[this.state.pizzaSelected].ingredientes.map((ingredient, k)=>(
+                                <div key={k} onClick={this.handleOpenModalIngredients}>
+                                    <p>{ingredient.label}</p>
+                                </div>
+                            ))}
+                            <div style={{ width: "100%", fontSize: 22, marginTop: 20, marginBottom: 10, fontWeight: 600 }}>
+                                R$ {this.state.pizzas[this.state.pizzaSelected].preço.toFixed(2)}
                             </div>
-                        ))}
-                        <div style={{ width: "100%", fontSize: 22, marginTop: 20, marginBottom: 10, fontWeight: 600 }}>
-                            R$ {this.state.pizzas[this.state.pizzaSelected].preço.toFixed(2)}
+                            <button
+                                className="button-action"
+                                onClick={this.handleCartAdd}
+                            >
+                                Adicionar ao Carrinho
+                            </button>
                         </div>
-                        <button
-                            className="button-action"
-                            onClick={this.handleCartAdd}
-                        >
-                            Adicionar ao Carrinho
-                        </button>
-                    </div>
+                    }
+
+                    {this.state.sabor === 2 &&
+                        <div className="info-area-pizza">
+                            <div className="title-pizza">
+                                Pizza de {this.state.pizzas[this.state.pizzaSelected].name}
+                                &nbsp;/ {this.state.pizzas[this.state.pizzaSaborDois].name}
+                            </div>
+                            {this.state.pizzas[this.state.pizzaSelected].ingredientes.map((ingredient, k)=>(
+                                <div key={k} onClick={this.handleOpenModalIngredients}>
+                                    <p>{ingredient.label}</p>
+                                </div>
+                            ))}
+                            <div style={{ width: "100%", fontSize: 22, marginTop: 20, marginBottom: 10, fontWeight: 600 }}>
+                                {this.state.pizzas[this.state.pizzaSaborDois].preço > this.state.pizzas[this.state.pizzaSelected].preço &&
+                                    `${this.state.pizzas[this.state.pizzaSaborDois].preço.toFixed(2)}`
+                                }
+                                {this.state.pizzas[this.state.pizzaSaborDois].preço < this.state.pizzas[this.state.pizzaSelected].preço &&
+                                    `${this.state.pizzas[this.state.pizzaSelected].preço.toFixed(2)}`
+                                }
+                                {this.state.pizzas[this.state.pizzaSaborDois].preço == this.state.pizzas[this.state.pizzaSelected].preço &&
+                                    `${this.state.pizzas[this.state.pizzaSelected].preço.toFixed(2)}`
+                                }
+                            </div>
+                            <button
+                                className="button-action"
+                                onClick={this.handleCartAdd}
+                            >
+                                Adicionar ao Carrinho
+                            </button>
+                        </div>
+                    }
+
                 </PizzaItemArea>
                 
                 {this.state.modal &&
@@ -257,13 +299,25 @@ class FormArea extends React.Component {
                         <CartBody open={this.state.cartOpen}>
 
                             {this.state.cart.map((item, k)=>(
-                                <ul key={k} style={{display: "flex", listStyle: "none"}}>
-                                    <li style={{margin: 10, fontSize: 22}}>{item.qt}</li>
-                                    <li style={{margin: 10, fontSize: 22}}>{item.name}</li>
-                                    <li style={{margin: 10, fontSize: 22}}>R$ {item.price.toFixed(2)}</li>
+                                <ul key={k} style={{display: "flex", listStyle: "none", borderBottom: "2px solid #333"}}>
+                                    <li style={{margin: 5, fontSize: 14}}>{item.qt}</li>
+                                    <li style={{margin: 5, fontSize: 14}}>{item.name}</li>
+                                    <li style={{margin: 5, fontSize: 14}}>R$ {item.price.toFixed(2)}</li>
+                                    <li style={{margin: 5, fontSize: 14}}>{item.borda}</li>
+                                    <li style={{margin: 5, fontSize: 14}}>{item.qtSabores}</li>
                                 </ul>
                             ))}
-
+                        <button style={{
+                            border: "none",
+                            padding: "5px 40px",
+                            margin: "5px",
+                            fontSize: 18,
+                            backgroundColor: "rebeccapurple",
+                            color: "white"
+                        }}
+                            onClick={()=>(alert('Finalizar Pedido'))}>
+                            Finalizar Pedido
+                        </button>
                         </CartBody>
                     </CartArea>
                 }
