@@ -13,9 +13,9 @@ const PizzasArray = [
             {idIngrediente: 6, label:'Azeitona'},
             {idIngrediente: 7, label:'Orégano'},
         ],
-        img: 'assets/media/pizza.png',
-        rigthImg: 'assets/media/pizzameia.png',
-        leftImg: 'assets/media/pizza2meia.png'
+        img: 'assets/media/pizza_palmito.png',
+        imagemEsquerda: 'assets/media/pizza_palmito_esquerda.png',
+        imagemDireita: 'assets/media/pizza_palmito_direita.png'
     },
     {
         id: 2,
@@ -29,9 +29,9 @@ const PizzasArray = [
             {idIngrediente: 4, label:'Catupity'},
             {idIngrediente: 5, label:'Orégano'},
         ],
-        img: 'assets/media/pizza2.png',
-        rigthImg: 'assets/media/pizzameia.png',
-        leftImg: 'assets/media/pizza2meia.png'
+        img: 'assets/media/pizza_frango.png',
+        imagemEsquerda: 'assets/media/pizza_frango_esquerda.png',
+        imagemDireita: 'assets/media/pizza_frango_direita.png'
     },
     {
         id: 3,
@@ -45,9 +45,9 @@ const PizzasArray = [
             {idIngrediente: 4, label:'Orégano'},
             {idIngrediente: 5, label:'Manjericão'}
         ],
-        img: 'assets/media/pizza3.png',
-        rigthImg: 'assets/media/pizzameia.png',
-        leftImg: 'assets/media/pizza2meia.png'
+        img: 'assets/media/pizza_marguerita.png',
+        imagemEsquerda: 'assets/media/pizza_marguerita_esquerda.png',
+        imagemDireita: 'assets/media/pizza_marguerita_direita.png'
     },
     {
         id: 4,
@@ -63,9 +63,9 @@ const PizzasArray = [
             {idIngrediente: 6, label:'Azeitone'},
             {idIngrediente: 7, label:'Orégano'},
         ],
-        img: 'assets/media/pizza4.png',
-        rigthImg: 'assets/media/pizzameia.png',
-        leftImg: 'assets/media/pizza2meia.png'
+        img: 'assets/media/pizza_vegetariana.png',
+        imagemEsquerda: 'assets/media/pizza_vegetariana_esquerda.png',
+        imagemDireita: 'assets/media/pizza_vegetariana_direita.png'
     },
     {
         id: 5,
@@ -79,9 +79,9 @@ const PizzasArray = [
             {idIngrediente: 4, label:'Calabresa'},
             {idIngrediente: 5, label:'Catupiry'},
         ],
-        img: 'assets/media/pizza5.png',
-        rigthImg: 'assets/media/pizzameia.png',
-        leftImg: 'assets/media/pizza2meia.png'
+        img: 'assets/media/pizza_especial.png',
+        imagemEsquerda: 'assets/media/pizza_especial_esquerda.png',
+        imagemDireita: 'assets/media/pizza_especial_direita.png'
     },
     {
         id: 6,
@@ -97,9 +97,9 @@ const PizzasArray = [
             {idIngrediente: 6, label:'Shimeji'},
             {idIngrediente: 7, label:'Orégano'},
         ],
-        img: 'assets/media/pizza6.png',
-        rigthImg: 'assets/media/pizzameia.png',
-        leftImg: 'assets/media/pizza2meia.png'
+        img: 'assets/media/pizza_cogumelos.png',
+        imagemEsquerda: 'assets/media/pizza_cogumelos_esquerda.png',
+        imagemDireita: 'assets/media/pizza_cogumelos_direita.png'
     },
     {
         id: 7,
@@ -111,9 +111,9 @@ const PizzasArray = [
             {idIngrediente: 2, label:'Queijo Mussarela'},
             {idIngrediente: 3, label:'Chocolate'},
         ],
-        img: 'assets/media/pizza7.png',
-        rigthImg: 'assets/media/pizzameia.png',
-        leftImg: 'assets/media/pizza2meia.png'
+        img: 'assets/media/pizza_chocolate.png',
+        imagemEsquerda: 'assets/media/pizza_choco_meia_esquerda.png',
+        imagemDireita: 'assets/media/pizza_choco_meia_direita.png'
     },
 ]
 

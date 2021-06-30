@@ -6,7 +6,7 @@ import {
     ModalImg
 } from './styled'
 
-const ModalPizza = ({ data, selectedPizza, onClick }) => {
+const ModalPizzaDois = ({ data, selectedPizza, onClick }) => {
 
     const info = data
     const [ pizzaSelected, setPizzaSelected ] = useState(selectedPizza)
@@ -37,4 +37,4 @@ const ModalPizza = ({ data, selectedPizza, onClick }) => {
     )
 }
 
-export default ModalPizza
+export default ModalPizzaDois

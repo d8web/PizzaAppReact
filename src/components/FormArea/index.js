@@ -8,6 +8,7 @@ import {
 } from './styled'
 
 import ModalPizza from "../ModalPizza";
+import ModalPizzaDois from "../ModalPizzaDois";
 import MyModalIngredients from "../ModalIngredients"
 
 import PizzasArray from './PizzasArray'
@@ -50,8 +51,8 @@ class FormArea extends React.Component {
             borda: 1,
             pizzaSelected: 0,
             pizzas: PizzasArray,
-            pizzaSaborUm: [],
-            pizzaSaborDois: [],
+            pizzaSaborDois: 5,
+            saborDois: false,
             cart: [],
             cartOpen: false,
             modal: false,
@@ -77,6 +78,8 @@ class FormArea extends React.Component {
         this.handleCartAdd = this.handleCartAdd.bind(this)
 
         this.handleCartOpen = this.handleCartOpen.bind(this)
+
+        this.handleCloseModalSaborDois = this.handleCloseModalSaborDois.bind(this)
     }
   
     handleChangeSabor(e) {
@@ -97,6 +100,11 @@ class FormArea extends React.Component {
         this.setState({ modal: false })
     }
 
+    handleCloseModalSaborDois(k) {
+        this.setState({ pizzaSaborDois: k })
+        this.setState({ saborDois: false })
+    }
+
     handleOpenModalIngredients(e) {
         this.setState({ modalIngredients: true })
     }
@@ -108,28 +116,12 @@ class FormArea extends React.Component {
 
     handleSaborUmClick(e) {
         //alert('Add pizza 1')
-        this.state.pizzaSaborUm.push({
-            id: this.state.pizzas[this.state.pizzaSelected].id,
-            name: this.state.pizzas[this.state.pizzaSelected].name,
-            image: this.state.pizzas[this.state.pizzaSelected].rigthImg,
-            borda: this.state.borda,
-            qt: 1,
-            price: this.state.pizzas[this.state.pizzaSelected].preço,
-        })
-        console.log("Pizza 1:", this.state.pizzaSaborUm)
+        this.setState({ modal: true })
     }
 
     handleSaborDoisClick(e) {
         //alert('Add pizza 2')
-        this.state.pizzaSaborDois.push({
-            id: this.state.pizzas[this.state.pizzaSelected].id,
-            name: this.state.pizzas[this.state.pizzaSelected].name,
-            image: this.state.pizzas[this.state.pizzaSelected].rigthImg,
-            borda: this.state.borda,
-            qt: 1,
-            price: this.state.pizzas[this.state.pizzaSelected].preço,
-        })
-        console.log("Pizza 2:", this.state.pizzaSaborDois)
+        this.setState({ saborDois: true })
     }
 
     handleCartAdd(e) {
@@ -207,10 +199,10 @@ class FormArea extends React.Component {
                         {this.state.sabor === 2 &&
                             <div className="two-pizzas">
                                 <div onClick={this.handleSaborUmClick}>
-                                    <img src="assets/media/pizzameia.png" alt="Pizza-sabor-1" />
+                                    <img src={this.state.pizzas[this.state.pizzaSelected].imagemEsquerda} alt="Pizza-sabor-1" />
                                 </div>
                                 <div onClick={this.handleSaborDoisClick}>
-                                    <img src="assets/media/pizza3meia.png" alt="Pizza-sabor-2" />
+                                    <img src={this.state.pizzas[this.state.pizzaSaborDois].imagemDireita} alt="Pizza-sabor-2" />
                                 </div>
                             </div>
                         }
@@ -239,6 +231,14 @@ class FormArea extends React.Component {
                         data={this.state.pizzas}
                         pizzaSelected={this.state.pizzaSelected}
                         onClick={this.handleCloseModal}
+                    />
+                }
+
+                {this.state.saborDois &&
+                    <ModalPizzaDois
+                        data={this.state.pizzas}
+                        pizzaSelected={this.state.pizzaSaborDois}
+                        onClick={this.handleCloseModalSaborDois}
                     />
                 }
 
