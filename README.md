@@ -3,11 +3,11 @@
 <p>Aprendi alguns conceitos básicos de React, então vi um projeto e decidi me desafiar a criar algumas de suas funcionalidades, neste projeto podemos adicionar pizzas ao carrinho, podendo escolher entre um sabor ou dois sabores, com opções de borda, o projeto ainda possui alguns bugs, mas pela primeira versão acho que foi um bom começo para aprender o básico de como funciona o React.</p>
 <p>Até este momento estava criando aplicações com HTML, Css e Js puro, quando conheci o poder do React fiquei apaixonado como a ferramenta deixa tudo mais simples com o uso do useState e useEffect.</p>
 
+<img src="https://github.com/d8web/PizzaAppReact/blob/main/Anima%C3%A7%C3%A3o.gif"/>
+
 ![alt text](https://github.com/d8web/PizzaAppReact/blob/main/public/assets/media/screenshot.png)
 
 ![alt text](https://github.com/d8web/PizzaAppReact/blob/main/public/assets/media/screenshot-mobile.png)
-
-<img src="https://github.com/d8web/Pizza-System-Next-JS/blob/master/public/img/pizza.gif"/>
 
 ### Features
 
